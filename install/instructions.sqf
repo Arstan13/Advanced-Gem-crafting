@@ -20,14 +20,38 @@ add these lines to the very bottom of the file
 
 This step will allow your players to remove items they craft just like they can currently remove Epoch items. If they die, they will no longer be able to remove them. 
  
-find: around ln 261
+open fn_selfActions.sqf find around ln 261
  
 _isModular = _cursorTarget isKindOf "ModularItems";
  
 and change that entire line to:
 _isModular = (_cursorTarget isKindOf "ModularItems") or ((typeOf _cursorTarget) in Custom_Buildables);
 
+add this code
+
+if ((_typeOfCursorTarget in Custom_Buildables) && (player distance _cursorTarget <= 5) && {speed player <= 1} && (_canDo)) then {
+		_hasAccess = [player, _cursorTarget] call FNC_check_access; //checks if player has rights to object
+		_allowed = ((_hasAccess select 0) || (_hasAccess select 2) || (_hasAccess select 3) || (_hasAccess select 4)); //returns values from fn_checkAccess of [_player, _isOwner, _isFriendly, _isPlotOwner]
+		if ((s_buildables_remove < 0) && (_allowed || (_hasAccess select 1))) then {
+			s_buildables_remove = player addAction [("<t color=""#FF0000"">"+("Dismantle Object") + "</t>"), "scripts\buildables\dismantle.sqf",_cursorTarget, 3, true, true];
+		};
+	} else {
+		player removeAction s_buildables_remove;
+		s_buildables_remove = -1;
+	};
+  
+above tame dogs code to use the custom dismantle script for all the buildables
+
+this goes in the self_action resets in fn_selfActions
+
+player removeAction s_custom_dismantle; //buildables dismantle
+s_custom_dismantle = -1;
+
+and this into your variables.sqf
+
+s_custom_dismantle = -1;
+
 credits @Raymiz and @Hogscraper for the Original code!
         @theduke for updating Advanced Alchemical Crafting to 1.0.6.1
         @Zupa for coding the zCraft menu itself
-        @Ghostis for bringing us the zCraft menu
+        @Ghostis for bringing us the zCraft menu to advanced alchemical crafting

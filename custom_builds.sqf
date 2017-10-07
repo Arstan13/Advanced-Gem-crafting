@@ -30,6 +30,12 @@ if(_playerUID in Admin_Crafting) then {
 	_AdminCraft=true;
 };
 
+if((EAT_isAdmin) && (EAT_AdminMode)) then {
+	_AdminCraft=true;
+} else {
+	_AdminCraft=false;
+};
+
 //create arrays for checking whether or not the player
 //has the correct tools and materials to make the desired item
 _requiredtools = getArray (missionConfigFile >> "Custom_Buildables" >> "Buildables" >> ComboBoxResult >> _classname >> "requiredtools");

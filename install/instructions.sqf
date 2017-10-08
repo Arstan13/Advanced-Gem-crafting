@@ -8,7 +8,7 @@ find
 call compile preprocessFileLineNumbers "\z\addons\dayz_code\init\compiles.sqf";
  
 and add the following line underneath it
-call compile preprocessFileLineNumbers "scripts\Buildables\Crafting_Compiles.sqf
+call compile preprocessFileLineNumbers "scripts\Buildables\Crafting_Compiles.sqf";
 
 add these lines to the very bottom of the file
  

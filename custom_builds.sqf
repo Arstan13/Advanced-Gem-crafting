@@ -10,7 +10,7 @@ Cleaned up a lot of old code that wasn't needed any more for this custom craftin
 Removed irrelevant variables from private block
 This file is called with zero parameters
 */
-private ["_AdminCraft","_HM_temp","_HT_temp","_IsNearPlot","_RM_temp","_RT_temp","_activatingPlayer","_buildcheck","_canBuild","_canBuildOnPlot","_canDo","_cancel","_charID","_classname","_counter","_dir","_distance","_exitWith","_found","_friendlies","_hasMaterials","_hasTools","_hasmaterials","_hastools","_helperColor","_inVehicle","_isAllowedUnderGround","_isOk","_isfriendly","_isowner","_lbIndex","_location","_location1","_location2","_mags","_message","_nearestPole","_needText","_objHDiff","_object","_objectHelper","_objectHelperDir","_objectHelperPos","_offset","_onLadder","_ownerID","_playerUID","_plotcheck","_position","_reason","_requiredmaterials","_requiredtools","_requireplot","_rotate","_text","_tmp_Pos","_tmpbuilt","_vehicle","_weaps","_zheightchanged","_zheightdirection"];
+private ["_AdminCraft","_HM_temp","_HT_temp","_IsNearPlot","_RM_temp","_RT_temp","_activatingPlayer","_buildcheck","_canBuild","_canBuildOnPlot","_canDo","_cancel","_charID","_classname","_counter","_dir","_distance","_exitWith","_found","_friendlies","_hasMaterials","_hasTools","_hasmaterials","_hastools","_helperColor","_inVehicle","_isAllowedUnderGround","_isOk","_isfriendly","_isowner","_lbIndex","_location","_location1","_location2","_mags","_message","_nearestPole","_needText","_objHDiff","_object","_objectHelper","_objectHelperDir","_objectHelperPos","_offset","_onLadder","_ownerID","_playerUID","_plotcheck","_position","_reason","_requiredmaterials","_requiredtools","_requireplot","_rotate","_text","_tmp_Pos","_tmpbuilt","_vehicle","_weaps","_zheightchanged","_zheightdirection","_price","_wealth","_enoughMoney","_moneyInfo","_tCost"];
 
 _AdminCraft=false;
 
@@ -46,6 +46,27 @@ _hastools = false;
 _hasmaterials = false;
 _weaps=[];
 _mags=[];
+
+//cost variables
+_price = ((count _RT_temp) * ((count _RM_temp) * 1000));
+_wealth = player getVariable[Z_MoneyVariable,0];
+_enoughMoney = false;
+_moneyInfo = [false, [], [], [], 0];
+
+if (Z_SingleCurrency) then {
+	_enoughMoney = (_wealth >= _price);
+} else {
+	_moneyInfo = _price call Z_canAfford;
+	_enoughMoney = _moneyInfo select 0;
+};
+
+if !(_enoughMoney) exitWith {
+  if (Z_SingleCurrency) then {
+		systemChat "You cant afford to do that....";
+    dayz_actionInProgress = false;
+    closeDialog 2;
+	};
+};
 
 _weaps=weapons player;
 _mags=magazines player;
@@ -445,6 +466,11 @@ if (!DZE_BuildOnRoads) then {
 if(!canbuild) then { _cancel = true; _reason = format[localize "STR_EPOCH_PLAYER_136",localize "STR_EPOCH_TRADER"]; };
 
 if(!_cancel) then {
+
+  if (Z_SingleCurrency) then {
+			player setVariable[Z_MoneyVariable,(_wealth - _price),true];
+			systemChat format["You paid %1 to build that!",_price];
+		};
 
 	// Start Build
 	_tmpbuilt = createVehicle [_classname, _location, [], 0, "CAN_COLLIDE"];

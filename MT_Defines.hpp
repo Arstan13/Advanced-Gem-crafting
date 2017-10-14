@@ -476,23 +476,33 @@ class Custom_Buildables {
         requiredtools[] = {"ItemToolbox","ItemCrowbar","ItemSledge"};		
         requiredmaterials[] ={"bulk_PartGeneric","metal_panel_kit"};
       };
+      class MAP_komin:Default {
+        offset[]={0,5,4};
+        requiredtools[] = {"ItemToolbox","ItemCrowbar","ItemSledge"};		
+        requiredmaterials[] ={"full_cinder_wall_kit","full_cinder_wall_kit","full_cinder_wall_kit","full_cinder_wall_kit","bulk_PartGeneric","MortarBucket","MortarBucket"};
+      };
+    };
+    class Communications {
       class MAP_antenna_small_roof {
         requiredtools[] = {"ItemToolbox"};		
-        requiredmaterials[] ={"PartGeneric","equip_1inch_pipe","equip_1inch_pipe","equip_scrapelectronics"};
+        requiredmaterials[] ={"PartGeneric","equip_1inch_metal_pipe","equip_1inch_metal_pipe","equip_scrapelectronics"};
       };
       class MAP_antenna_small_roof1:MAP_antenna_small_roof {};
       class MAP_antenna_big_roof:MAP_antenna_small_roof {};
       class MAP_Antenna {
+        offset[]={0,5,4};
         requiredtools[] = {"ItemToolbox","ItemSledge"};		
-        requiredmaterials[] ={"bulk_PartGeneric","equip_2inch_pipe","equip_2inch_pipe","equip_scrapelectronics","equip_scrapelectronics"};
+        requiredmaterials[] ={"bulk_PartGeneric","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_scrapelectronics","equip_scrapelectronics"};
       };
       class MAP_Vysilac_FM {
+        offset[]={0,5,10};
         requiredtools[] = {"ItemToolbox","ItemSledge"};		
-        requiredmaterials[] ={"bulk_PartGeneric","equip_2inch_pipe","equip_2inch_pipe","equip_2inch_pipe","equip_scrapelectronics","equip_scrapelectronics","equip_scrapelectronics"};
+        requiredmaterials[] ={"bulk_PartGeneric","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_scrapelectronics","equip_scrapelectronics","equip_scrapelectronics"};
       };
       class MAP_telek1 {
+        offset[]={0,5,10};
         requiredtools[] = {"ItemToolbox","ItemSledge"};		
-        requiredmaterials[] ={"bulk_PartGeneric","bulk_PartGeneric","equip_2inch_pipe","equip_2inch_pipe","equip_2inch_pipe","equip_2inch_pipe","equip_scrapelectronics","equip_scrapelectronics","equip_scrapelectronics","equip_scrapelectronics"};
+        requiredmaterials[] ={"bulk_PartGeneric","bulk_PartGeneric","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_scrapelectronics","equip_scrapelectronics","equip_scrapelectronics","equip_scrapelectronics"};
       };
     };
     class Garage:DefaultGarage {
@@ -577,10 +587,10 @@ class Custom_Buildables {
         requiredmaterials[] ={"PartPlankPack","PartPlankPack","equip_brick","equip_brick","equip_brick","equip_brick","equip_brick","equip_brick"};
       };
       class MAP_P_pipe_big:DefaultEmerald {
-        requiredmaterials[] ={"bulk_PartGeneric","bulk_PartGeneric","equip_2inch_pipe","equip_2inch_pipe","equip_2inch_pipe","equip_2inch_pipe","equip_2inch_pipe","equip_2inch_pipe"};
+        requiredmaterials[] ={"bulk_PartGeneric","bulk_PartGeneric","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_2inch_metal_pipe","equip_2inch_metal_pipe"};
       };
       class MAP_P_pipe_small:DefaultEmerald {
-        requiredmaterials[] ={"bulk_PartGeneric","bulk_PartGeneric","equip_1inch_pipe","equip_1inch_pipe","equip_1inch_pipe","equip_1inch_pipe","equip_1inch_pipe","equip_1inch_pipe"};
+        requiredmaterials[] ={"bulk_PartGeneric","bulk_PartGeneric","equip_1inch_metal_pipe","equip_1inch_metal_pipe","equip_1inch_metal_pipe","equip_1inch_metal_pipe","equip_1inch_metal_pipe","equip_1inch_metal_pipe"};
       };
       class MAP_P_ytong:DefaultEmerald {
         requiredmaterials[] ={"PartPlankPack","PartPlankPack","equip_nails","PartPlywoodPack","PartPlywoodPack"};
@@ -653,13 +663,13 @@ class Custom_Buildables {
         requiredmaterials[] ={"equip_scrapelectronics","PartGeneric","PartGeneric","ItemWaterBottle"};
       };
       class MAP_antenna_big_roof:DefaultEmerald {
-        requiredmaterials[] ={"bulk_PartGeneric","equip_1inch_pipe","equip_2inch_pipe","equip_scrapelectronics"};
+        requiredmaterials[] ={"bulk_PartGeneric","equip_1inch_metal_pipe","equip_2inch_metal_pipe","equip_scrapelectronics"};
       };
       class MAP_antenna_small_roof:DefaultEmerald {
-        requiredmaterials[] ={"bulk_PartGeneric","equip_1inch_pipe","equip_scrapelectronics"};
+        requiredmaterials[] ={"bulk_PartGeneric","equip_1inch_metal_pipe","equip_scrapelectronics"};
       };
       class MAP_antenna_small_roof_1:DefaultEmerald {
-        requiredmaterials[] ={"PartGeneric","equip_1inch_pipe","equip_scrapelectronics"};
+        requiredmaterials[] ={"PartGeneric","equip_1inch_metal_pipe","equip_scrapelectronics"};
       };
       class MAP_bouda_plech:DefaultEmerald {
         requiredmaterials[] ={"equip_metal_sheet","equip_metal_sheet","equip_metal_sheet","equip_metal_sheet","cinder_door_kit"};
@@ -721,7 +731,7 @@ class Custom_Buildables {
         requiredmaterials[] ={"PartGeneric","ItemStone"};
       };
       class MAP_GasMeterExt:DefaultEmerald {
-        requiredmaterials[] ={"PartGeneric","equip_1inch_pipe","equip_brick","equip_brick"};
+        requiredmaterials[] ={"PartGeneric","equip_1inch_metal_pipe","equip_brick","equip_brick"};
       };	
       class MAP_KBud:DefaultEmerald {
         requiredmaterials[] ={"PartWoodLumber","PartPlywoodPack"};
@@ -736,7 +746,7 @@ class Custom_Buildables {
         requiredmaterials[] ={"PartGeneric","PartWoodLumber"};
       };
       class MAP_parabola_big:DefaultEmerald {
-        requiredmaterials[] ={"PartGeneric","equip_1inch_pipe","equip_1inch_pipe","equip_scrapelectronics"};
+        requiredmaterials[] ={"PartGeneric","equip_1inch_metal_pipe","equip_1inch_metal_pipe","equip_scrapelectronics"};
       };	
       class MAP_phone_box:DefaultEmerald {
         requiredmaterials[] ={"PartGlass","PartGeneric","equip_scrapelectronics"};
@@ -763,7 +773,7 @@ class Custom_Buildables {
         requiredmaterials[] ={"PartGeneric","PartGeneric"};
       };
       class MAP_brana:DefaultEmerald {
-        requiredmaterials[] ={"equip_2inch_pipe","equip_1inch_pipe","equip_2inch_pipe"};
+        requiredmaterials[] ={"equip_2inch_metal_pipe","equip_1inch_metal_pipe","equip_2inch_metal_pipe"};
       };	
     };
     class Scaffolding{         	//3

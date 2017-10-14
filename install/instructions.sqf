@@ -29,15 +29,26 @@ _isModular = (_cursorTarget isKindOf "ModularItems") or ((typeOf _cursorTarget) 
 
 add this code
 
-if ((_typeOfCursorTarget in Custom_Buildables) && (player distance _cursorTarget <= 5) && {speed player <= 1} && (_canDo)) then {
+  if ((_typeOfCursorTarget in Custom_Buildables) && (player distance _cursorTarget <= 5) && {speed player <= 1} && (_canDo)) then {
 		_hasAccess = [player, _cursorTarget] call FNC_check_access; //checks if player has rights to object
 		_allowed = ((_hasAccess select 0) || (_hasAccess select 2) || (_hasAccess select 3) || (_hasAccess select 4)); //returns values from fn_checkAccess of [_player, _isOwner, _isFriendly, _isPlotOwner]
-		if ((s_buildables_remove < 0) && (_allowed || (_hasAccess select 1))) then {
-			s_buildables_remove = player addAction [("<t color=""#FF0000"">"+("Dismantle Object") + "</t>"), "scripts\buildables\dismantle.sqf",_cursorTarget, 3, true, true];
+		if ((s_custom_dismantle < 0) && (_allowed || (_hasAccess select 1))) then {
+			s_custom_dismantle = player addAction [("<t color=""#FF0000"">"+("Dismantle Object") + "</t>"), "scripts\buildables\dismantle.sqf",_cursorTarget, 3, true, true];
 		};
 	} else {
-		player removeAction s_buildables_remove;
-		s_buildables_remove = -1;
+		player removeAction s_custom_dismantle;
+		s_custom_dismantle = -1;
+	};
+  
+  if (_typeOfCursorTarget == "Plastic_Pole_EP1_DZ" && {speed player <= 1}) then {
+		_hasAccess = [player, _cursorTarget] call FNC_check_access; //checks if player has rights to object
+		_allowed = ((_hasAccess select 0) || (_hasAccess select 2) || (_hasAccess select 3) || (_hasAccess select 4)); //returns values from fn_checkAccess of [_player, _isOwner, _isFriendly, _isPlotOwner]
+		if ((s_amplifier_dismantle < 0) && (_allowed || (_hasAccess select 1))) then {
+			s_amplifier_dismantle = player addAction [("<t color=""#b7b7b5"">"+("Dismantle Amplifier") + "</t>"), "scripts\buildables\ampDismantle.sqf",_cursorTarget, 3, true, true];
+		};
+	} else {
+		player removeAction s_amplifier_dismantle;
+		s_amplifier_dismantle = -1;
 	};
   
 above tame dogs code to use the custom dismantle script for all the buildables
@@ -46,10 +57,13 @@ this goes in the self_action resets in fn_selfActions
 
 player removeAction s_custom_dismantle; //buildables dismantle
 s_custom_dismantle = -1;
+player removeAction s_amplifier_dismantle;
+s_amplifier_dismantle = -1;
 
 and this into your variables.sqf
 
 s_custom_dismantle = -1;
+s_amplifier_dismantle = -1;
 
 credits @Raymiz and @Hogscraper for the Original code!
         @theduke for updating Advanced Alchemical Crafting to 1.0.6.1
